@@ -1,0 +1,83 @@
+import requests
+import json
+import uuid
+from datetime import datetime
+
+# Base URL
+base_url = "http://216.10.245.166"
+
+# Generate unique ISBN using current time and UUID
+ct = datetime.now().strftime("%Y%m%d")  # Current time in 'YYYYMMDD' format
+unique_id = str(uuid.uuid4())[:5]  # Generate a 6-character UUID
+isbn = f"{ct}{unique_id}"  # Combine current time and UUID
+
+# Input JSON Payload for AddBook
+payload = {
+    "name": "Learn Appium Automation with Java",
+    "isbn": isbn,
+    "aisle": "227",
+    "author": "John foe"
+}
+
+# Headers
+headers = {
+    "Content-Type": "application/json"
+}
+
+try:
+    # 1. Add a Book
+    add_url = f"{base_url}/Library/Addbook.php"
+    response = requests.post(add_url, json=payload, headers=headers)
+    response.raise_for_status()
+    add_response = response.json()
+
+    # Print AddBook response
+    print(f"AddBook Response status: {response.status_code}")
+    print(f"AddBook Response: {json.dumps(add_response, indent=2)}")
+
+    # Validate successful addition
+    assert add_response["Msg"] == "successfully added", "Book was not added successfully."
+    book_id = add_response["ID"]
+    print(f"Step #1 - Book ID: {book_id} added successfully.\n")
+
+    # 2. Get the Book by ID
+    get_url = f"{base_url}/Library/GetBook.php"
+    response = requests.get(get_url, params={"ID": book_id})
+    response.raise_for_status()
+    get_response = response.json()
+
+    # Validate response contains expected data
+    assert "book_name" in get_response[0], "Book not found."
+
+    # Print GetBook response
+    print(f"Step #2 - GetBook Response: {json.dumps(get_response, indent=2)}\n")
+    print(f"GetBook Response status: {response.status_code}")
+    print(f"GetBook Name: {get_response[0]['book_name']}\n")
+
+    # 3. Delete the Book by ID
+    delete_url = f"{base_url}/Library/DeleteBook.php"
+    delete_payload = {"ID": book_id}
+
+    response = requests.post(delete_url, json=delete_payload, headers=headers)
+    response.raise_for_status()
+    delete_response = response.json()
+
+    # Print DeleteBook response
+    print(f"Step #3 - DeleteBook Response: {json.dumps(delete_response, indent=2)}")
+    print(f"DeleteBook Response status: {response.status_code}")
+    # Validate successful deletion
+    assert delete_response["msg"] == "book is successfully deleted", "Book was not deleted successfully."
+    print(f"DeleteBook with ID {book_id} deleted successfully.")
+
+except requests.exceptions.HTTPError as http_err:
+    print(f"HTTP Error: {http_err}")
+except requests.exceptions.ConnectionError:
+    print("Error: Unable to connect to the server.")
+except requests.exceptions.Timeout:
+    print("Error: Request timed out.")
+except requests.exceptions.RequestException as req_err:
+    print(f"Request Exception: {req_err}")
+except AssertionError as e:
+    print(f"Assertion Error: {e}")
+except Exception as e:
+    print(f"Unexpected Error: {e}")
