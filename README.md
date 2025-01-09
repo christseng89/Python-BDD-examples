@@ -35,3 +35,9 @@ PyCharm 的适用场景：
 ### Create a New Project (BackendAutomation) in PyCharm
 pip install requests
 pip show requests
+
+### Create a New Python Package (utilities) in PyCharm
+- utilities => New file: 
+  - properties.ini 
+  - configurations.py
+  - payloads.py

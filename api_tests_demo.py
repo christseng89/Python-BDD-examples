@@ -1,25 +1,11 @@
 import requests
 import json
-import uuid
-from datetime import datetime
+from utilities.payloads import *
+from utilities.configurations import *
 
 # Base URL
-base_url = "http://216.10.245.166"
-
-# Generate unique ISBN using current time and UUID
-ct = datetime.now().strftime("%Y%m%d")  # Current time in 'YYYYMMDD' format
-unique_id = str(uuid.uuid4())[:5]  # Generate a 6-character UUID
-isbn = f"{ct}{unique_id}"  # Combine current time and UUID
-
-# Input JSON Payload for AddBook
-payload = {
-    "name": "Learn Appium Automation with Java",
-    "isbn": isbn,
-    "aisle": "227",
-    "author": "John foe"
-}
-
-# Headers
+# print (f"Endpoint {get_config()['API']['endpoint']}")
+base_url = get_config()['API']['endpoint']
 headers = {
     "Content-Type": "application/json"
 }
@@ -27,7 +13,7 @@ headers = {
 try:
     # 1. Add a Book
     add_url = f"{base_url}/Library/Addbook.php"
-    response = requests.post(add_url, json=payload, headers=headers)
+    response = requests.post(add_url, json=add_book_payload(), headers=headers)
     response.raise_for_status()
     add_response = response.json()
 
