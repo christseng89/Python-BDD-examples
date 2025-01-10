@@ -15,3 +15,7 @@ def add_book_payload():
         "author": "John foe"
     }
     return payload
+
+def delete_book_payload(book_id):
+    payload = {"ID": book_id}
+    return payload

@@ -2,17 +2,16 @@ import requests
 import json
 from utilities.payloads import *
 from utilities.configurations import *
+from utilities.resources import ApiResources
 
 # Base URL
 # print (f"Endpoint {get_config()['API']['endpoint']}")
 base_url = get_config()['API']['endpoint']
-headers = {
-    "Content-Type": "application/json"
-}
 
 try:
+    headers = ApiResources.headers
     # 1. Add a Book
-    add_url = f"{base_url}/Library/Addbook.php"
+    add_url = f"{base_url}{ApiResources.add_book}"
     response = requests.post(add_url, json=add_book_payload(), headers=headers)
     response.raise_for_status()
     add_response = response.json()
@@ -27,7 +26,7 @@ try:
     print(f"Step #1 - Book ID: {book_id} added successfully.\n")
 
     # 2. Get the Book by ID
-    get_url = f"{base_url}/Library/GetBook.php"
+    get_url = f"{base_url}{ApiResources.get_book}"
     response = requests.get(get_url, params={"ID": book_id})
     response.raise_for_status()
     get_response = response.json()
@@ -41,8 +40,8 @@ try:
     print(f"GetBook Name: {get_response[0]['book_name']}\n")
 
     # 3. Delete the Book by ID
-    delete_url = f"{base_url}/Library/DeleteBook.php"
-    delete_payload = {"ID": book_id}
+    delete_url = f"{base_url}{ApiResources.delete_book}"
+    delete_payload = delete_book_payload(book_id)
 
     response = requests.post(delete_url, json=delete_payload, headers=headers)
     response.raise_for_status()
