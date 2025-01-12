@@ -9,11 +9,38 @@ headers = {
     'X-GitHub-Api-Version': '2022-11-28'
 }
 
-try:
-    url = "https://api.github.com"
-    response = requests.request("GET", url, headers=headers)
+### Session
+se = requests.session()
+se.headers = headers
 
+try:
+    # GitHub Authentication
+    url = "https://api.github.com"
+    response = se.get(url)
     print(json.dumps(response.json(), indent=2))
+    print(f"{url} Status code: {response.status_code}")
+    print('*************************\n')
+
+    # GitHub Get User/Repos
+    url2 = url + "/user/repos"
+    response = se.get(url2)
+    # print(json.dumps(response.json(), indent=2))
+    print(f"{url2} Status code: {response.status_code}")
+    print('*************************\n')
+
+    # GitHub Get Rate Limit
+    url2 = url + "/rate_limit"
+    response = se.get(url2)
+    print(json.dumps(response.json()['rate'], indent=2))
+    print(f"{url2} Status code: {response.status_code}")
+    print('*************************\n')
+
+    # GitHub User email
+    url2 = url + "/user/followers"
+    response = se.get(url2)
+    print(json.dumps(response.json()[0]['login'], indent=2))
+    print(f"{url2} Status code: {response.status_code}")
+    print('*************************\n')
 
 except requests.exceptions.HTTPError as http_err:
     print(f"HTTP Error: {http_err}")

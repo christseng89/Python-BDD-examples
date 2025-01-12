@@ -41,3 +41,22 @@ pip show requests
   - properties.ini 
   - configurations.py
   - payloads.py
+
+### Github API Authentication
+https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api?apiVersion=2022-11-28
+    curl --request GET \
+    --url "https://api.github.com/octocat" \
+    --header "Authorization: Bearer {{token}}" \
+    --header "X-GitHub-Api-Version: 2022-11-28"
+
+### Github API Get Repos
+https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-repositories-for-the-authenticated-user
+"current_user_repositories_url": "https://api.github.com/user/repos"
+    curl -L \
+      -H "Accept: application/vnd.github+json" \
+      -H "Authorization: Bearer {{token}}" \
+      -H "X-GitHub-Api-Version: 2022-11-28" \
+      https://api.github.com/user/repos
+
+### HTTPBIN
+https://httpbin.org/#/Cookies
