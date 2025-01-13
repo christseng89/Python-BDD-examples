@@ -71,4 +71,46 @@ mysql -u root -p
 https://pypi.org/project/mysql-connector-python/
 pip install mysql-connector-python
 
+### BDD
+https://cucumber.io/
+https://cucumber.io/docs/installation/
+https://cucumber.io/docs/installation/python
 
+https://behave.readthedocs.io/en/latest/
+https://behave.readthedocs.io/en/latest/gherkin/#feature-testing-setup
+https://behave.readthedocs.io/en/latest/gherkin/#features
+
+@tags @tag
+Feature: feature name
+  description
+  further description
+
+  Background: some requirement of this test
+    Given some setup condition
+      And some other setup action
+
+  Scenario: some scenario
+      Given some condition
+       When some action is taken
+       Then some result is expected.
+
+  Scenario: some other scenario
+      Given some other condition
+       When some action is taken
+       Then some other result is expected.
+
+  Scenario: ...
+
+### Install Behave
+https://behave.readthedocs.io/en/latest/install/
+pip install behave
+
+### Install Gherkins
+https://www.jetbrains.com/pycharm/download/?section=windows
+Ctrl+ALT+S > Search for Gherkins
+
+New => Directory (features) => New (create a new file with .feature extension) => New Folder (steps) => New File (step_impl.py)
+
+// Terminal
+behave
+behave features/BookApi.feature
