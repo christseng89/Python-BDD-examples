@@ -60,3 +60,15 @@ https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-repositor
 
 ### HTTPBIN
 https://httpbin.org/#/Cookies
+
+### MySQL
+mysql -u root -p 
+    show databases;
+    use apidevelop;
+    select * from books;
+    select * from customerinfo;
+
+https://pypi.org/project/mysql-connector-python/
+pip install mysql-connector-python
+
+
