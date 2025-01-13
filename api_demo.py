@@ -12,7 +12,8 @@ try:
     headers = ApiResources.headers
     # 1. Add a Book
     add_url = f"{base_url}{ApiResources.add_book}"
-    response = requests.post(add_url, json=add_book_payload(), headers=headers)
+    query = 'select * from books'
+    response = requests.post(add_url, json=add_book_payload(query), headers=headers)
     response.raise_for_status()
     add_response = response.json()
 

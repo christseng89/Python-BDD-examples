@@ -78,7 +78,15 @@ try:
         delete_data = ('WebServices',)
         cursor.execute(delete_query, delete_data)
         conn.commit()
-        print("WebServices record deleted successfully.")
+        print("WebServices record deleted successfully.\n")
+
+        first_row = get_query('select * from books')
+        add_body = {'name': first_row[0], 'isbn': first_row[1], 'aisle': first_row[2], 'author': first_row[3]}
+        print (f"First book: {first_row}, type {type(first_row)}, add_body {add_body}")
+
+        first_row = get_query('select * from books')
+        add_body = {'name': first_row[0], 'isbn': first_row[1], 'aisle': first_row[2], 'author': first_row[3]}
+        print (f"First book: {first_row}, type {type(first_row)}, add_body {add_body}")
 
 except Error as e:
     print(f"Error occurred: {e}")
