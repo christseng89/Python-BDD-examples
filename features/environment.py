@@ -1,5 +1,4 @@
 import requests
-import json
 
 from utilities.payloads import *
 from utilities.configurations import *
