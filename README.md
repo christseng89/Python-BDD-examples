@@ -122,3 +122,9 @@ environment.py
 
 ### Scenario Outlines
 https://behave.readthedocs.io/en/stable/tutorial.html#scenario-outlines
+
+### Controlling Things With Tags
+https://behave.readthedocs.io/en/stable/tutorial.html#controlling-things-with-tags
+
+behave features/BookApi.feature --tags=smoke
+behave features/BookApi.feature --tags=regression
