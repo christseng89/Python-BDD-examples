@@ -114,3 +114,8 @@ New => Directory (features) => New (create a new file with .feature extension) =
 // Terminal
 behave
 behave features/BookApi.feature
+
+### Environment File Functions
+https://behave.readthedocs.io/en/stable/api.html#environment-file-functions
+
+environment.py

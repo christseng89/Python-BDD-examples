@@ -17,8 +17,11 @@ def step_impl(context):
 @when('we execute the AddBook PostAPI method')
 def step_impl(context):
     context.response = requests.post(context.add_url, json=context.payload, headers=context.headers)
+    # context.response = response.json()
+    # context.book_id = response.json()["ID"]
 
 @then('book is successfully added')
 def step_impl(context):
+    context.book_id = context.response.json()["ID"]
     assert context.response.json()['Msg'] == 'successfully added'
     assert context.response.status_code == 200
