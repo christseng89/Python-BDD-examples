@@ -119,3 +119,6 @@ behave features/BookApi.feature
 https://behave.readthedocs.io/en/stable/api.html#environment-file-functions
 
 environment.py
+
+### Scenario Outlines
+https://behave.readthedocs.io/en/stable/tutorial.html#scenario-outlines
