@@ -25,6 +25,7 @@ try:
     assert add_response["Msg"] == "successfully added", "Book was not added successfully."
     book_id = add_response["ID"]
     print(f"Step #1 - Book ID: {book_id} added successfully.\n")
+    print(f"Msg: {add_response["Msg"]}")
 
     # 2. Get the Book by ID
     get_url = f"{base_url}{ApiResources.get_book}"

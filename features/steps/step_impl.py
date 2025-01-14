@@ -1,13 +1,24 @@
+import requests
+import json
+
 from behave import *
+from utilities.payloads import *
+from utilities.configurations import *
+from utilities.resources import ApiResources
 
-@given('The Book details which needs to be added to Library')
+@given('the Book details which needs to be added to Library')
 def step_impl(context):
-    pass
+    base_url = get_config()['API']['endpoint']
+    context.headers = ApiResources.headers
+    context.add_url = f"{base_url}{ApiResources.add_book}"
+    query = 'select * from books'
+    context.payload = add_book_payload(query)
 
-@when('We execute the AddBook PostAPI method')
+@when('we execute the AddBook PostAPI method')
 def step_impl(context):
-    pass
+    context.response = requests.post(context.add_url, json=context.payload, headers=context.headers)
 
-@then('Book is successfully added')
+@then('book is successfully added')
 def step_impl(context):
-    pass
+    assert context.response.json()['Msg'] == 'successfully added'
+    assert context.response.status_code == 200
