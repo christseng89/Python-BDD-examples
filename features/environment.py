@@ -6,7 +6,8 @@ from utilities.resources import ApiResources
 
 def after_scenario(context, scenario):
     """Cleanup actions after each scenario."""
-    if hasattr(context, "book_id"):
+    # if hasattr(context, "book_id"):
+    if 'book' in scenario.tags:
         base_url = get_config()['API']['endpoint']
         delete_url = f"{base_url}{ApiResources.delete_book}"
         delete_payload = delete_book_payload(context.book_id)

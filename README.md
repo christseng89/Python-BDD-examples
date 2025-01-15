@@ -134,3 +134,28 @@ behave features/GithubApi.feature
 behave features/BookApi.feature 
 //To test 'status code of response should be 200'
 // Ensure context.response available for all scenarios (consistence)
+
+behave 
+// All Scenarios
+
+### Using tags with hook
+Scenario 
+...
+  @smoke
+  @book # add one more tag here...
+  Scenario: Verify AddBook API functionality
+    Given the Book details which needs to be added to Library
+    When we execute the AddBook PostAPI method
+    Then book is successfully added
+    And status code of response should be 200
+
+Hook
+...
+def after_scenario(context, scenario):
+    """Cleanup actions after each scenario."""
+    # if hasattr(context, "book_id"):
+    if 'book' in scenario.tags: # Revise the hook here ...
+        base_url = get_config()['API ...
+
+//Run from Terminal
+behave
