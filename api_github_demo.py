@@ -1,8 +1,9 @@
 import requests
 import json
 from utilities.configurations import *
+from utilities.resources import *
 
-url = 'https://api.github.com/user'
+# url = 'https://api.github.com/user'
 github_token = get_config()['API']['github_token']
 headers = {
     'Authorization': f'Bearer {github_token}',
@@ -15,28 +16,28 @@ se.headers = headers
 
 try:
     # GitHub Authentication
-    url = "https://api.github.com"
+    url = ApiResources.github
     response = se.get(url)
     print(json.dumps(response.json(), indent=2))
     print(f"{url} Status code: {response.status_code}")
     print('*************************\n')
 
     # GitHub Get User/Repos
-    url2 = url + "/user/repos"
+    url2 = ApiResources.github_user_repos
     response = se.get(url2)
     # print(json.dumps(response.json(), indent=2))
     print(f"{url2} Status code: {response.status_code}")
     print('*************************\n')
 
     # GitHub Get Rate Limit
-    url2 = url + "/rate_limit"
+    url2 = ApiResources.github_rate_limits
     response = se.get(url2)
     print(json.dumps(response.json()['rate'], indent=2))
     print(f"{url2} Status code: {response.status_code}")
     print('*************************\n')
 
     # GitHub User email
-    url2 = url + "/user/followers"
+    url2 = ApiResources.github_user_followers
     response = se.get(url2)
     print(json.dumps(response.json()[0]['login'], indent=2))
     print(f"{url2} Status code: {response.status_code}")

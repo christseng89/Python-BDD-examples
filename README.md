@@ -128,3 +128,9 @@ https://behave.readthedocs.io/en/stable/tutorial.html#controlling-things-with-ta
 
 behave features/BookApi.feature --tags=smoke
 behave features/BookApi.feature --tags=regression
+
+### GitHub API feature
+behave features/GithubApi.feature
+behave features/BookApi.feature 
+//To test 'status code of response should be 200'
+// Ensure context.response available for all scenarios (consistence)
