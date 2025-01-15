@@ -3,7 +3,7 @@ Feature: Verify if Book are added and deleted using Library API
 
   @smoke
   @book
-  Scenario: Verify AddBook API functionality
+  Scenario: Verify AddBook API
     Given the Book details which needs to be added to Library
     When we execute the AddBook PostAPI method
     Then book is successfully added
@@ -11,7 +11,7 @@ Feature: Verify if Book are added and deleted using Library API
 
     @regression
     @book
-    Scenario Outline: Verify AddBook API functionality
+    Scenario Outline: Verify AddBook API Outline
       Given the Book details with <isbn> and <aisle>
       When we execute the AddBook PostAPI method
       Then book is successfully added

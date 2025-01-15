@@ -159,3 +159,27 @@ def after_scenario(context, scenario):
 
 //Run from Terminal
 behave
+
+### Allure Behave Report
+pip install allure-behave
+
+behave -f allure_behave.formatter:AllureFormatter -o AllureReports
+
+### Install Allure Framework
+https://github.com/allure-framework/allure2
+https://allurereport.org/docs/install-for-windows/
+https://github.com/allure-framework/allure2/releases/tag/2.32.0 => zip
+
+// Settings => System => Advance system Settings => Add Path 
+where allure
+    C:\allure-2.32.0\bin\allure
+    C:\allure-2.32.0\bin\allure.bat
+
+allure serve AllureReports
+    Generating report to temp directory...
+    Report successfully generated to C:\Users\samfi\AppData\Local\Temp\9051437176126368637\allure-report
+    Starting web server...
+    2025-01-15 15:49:31.949:INFO::main: Logging initialized @4425ms to org.eclipse.jetty.util.log.StdErrLog
+    Server started at <http://10.39.101.8:57328/>. Press <Ctrl+C> to exit
+    ...
+
