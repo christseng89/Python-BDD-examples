@@ -10,7 +10,7 @@ headers = {
     'X-GitHub-Api-Version': '2022-11-28'
 }
 
-### Session
+# Session
 se = requests.session()
 se.headers = headers
 

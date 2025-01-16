@@ -13,6 +13,7 @@ headers = {
 se = requests.session()
 se.headers = headers
 
+
 def fetch_and_process(api_session, endpoint, response_processor=None):
     """Fetch data from the given endpoint and process the response."""
     try:
@@ -41,6 +42,7 @@ def fetch_and_process(api_session, endpoint, response_processor=None):
     except Exception as err:
         print(f"Unexpected Error for {endpoint}: {err}")
 
+
 try:
     # GitHub Authentication
     fetch_and_process(se, url)
@@ -50,11 +52,11 @@ try:
 
     # GitHub Get Rate Limit
     fetch_and_process(se, f"{url}/rate_limit",
-        lambda response: print(json.dumps(response.json().get('rate', {}), indent=2)))
+                      lambda response: print(json.dumps(response.json().get('rate', {}), indent=2)))
 
     # GitHub User Followers
     fetch_and_process(se, f"{url}/user/followers",
-        lambda response: print(json.dumps(response.json()[0]['login'], indent=2)))
+                      lambda response: print(json.dumps(response.json()[0]['login'], indent=2)))
 
 except Exception as e:
     print(f"Unexpected Error in main execution: {e}")

@@ -13,7 +13,8 @@ try:
     # 1. Add a Book
     add_url = f"{base_url}{ApiResources.add_book}"
     query = 'select * from books'
-    response = requests.post(add_url, json=add_book_payload(query), headers=headers)
+    response = requests.post(
+        add_url, json=add_book_payload(query), headers=headers)
     response.raise_for_status()
     add_response = response.json()
 
@@ -37,7 +38,8 @@ try:
     assert "book_name" in get_response[0], "Book not found."
 
     # Print GetBook response
-    print(f"Step #2 - GetBook Response: {json.dumps(get_response, indent=2)}\n")
+    print(
+        f"Step #2 - GetBook Response: {json.dumps(get_response, indent=2)}\n")
     print(f"GetBook Response status: {response.status_code}")
     print(f"GetBook Name: {get_response[0]['book_name']}\n")
 
@@ -50,7 +52,8 @@ try:
     delete_response = response.json()
 
     # Print DeleteBook response
-    print(f"Step #3 - DeleteBook Response: {json.dumps(delete_response, indent=2)}")
+    print(
+        f"Step #3 - DeleteBook Response: {json.dumps(delete_response, indent=2)}")
     print(f"DeleteBook Response status: {response.status_code}")
     # Validate successful deletion
     assert delete_response["msg"] == "book is successfully deleted", "Book was not deleted successfully."
