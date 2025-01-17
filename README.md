@@ -246,3 +246,6 @@ sudo service ssh start
     OR
 sudo service ssh restart
 sudo service ssh status
+
+#### SSH SFTP
+md outFiles

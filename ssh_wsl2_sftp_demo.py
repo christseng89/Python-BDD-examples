@@ -3,6 +3,9 @@ import csv
 import os
 from utilities.configurations import *
 
+# Initialize the client to ensure it's defined
+client = None
+
 try:
     # Fetch connection details from configuration
     config = get_config()
@@ -79,12 +82,12 @@ try:
             csvReader = csv.reader(csvFile, delimiter=',')
             for row in csvReader:
                 if row[0] == "32321":
-                    assert row[1] == "approved", f"Row assertion failed for ID 32321. Expected 'approved', got '{row[1]}'."
+                    assert row[1] == "approved", f"\n\tRow assertion failed for ID 32321. Expected 'approved', got '{row[1]}'."
         print("CSV parsed successfully, and assertions passed.")
     except FileNotFoundError:
         raise Exception(f"Output file not found: {local_output_file}")
     except AssertionError as e:
-        raise Exception(f"Assertion error: {e}")
+        raise Exception(f"\nAssertion error: {e}")
     except Exception as e:
         raise Exception(f"Error parsing CSV: {e}")
 
