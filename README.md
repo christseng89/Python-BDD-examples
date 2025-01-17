@@ -242,4 +242,7 @@ ssh christseng89@172.21.243.76
     ssh: connect to host 172.21.243.76 port 22: Connection timed out
 
 // WSL2
+sudo service ssh start 
+    OR
 sudo service ssh restart
+sudo service ssh status
