@@ -184,3 +184,62 @@ allure serve AllureReports
     ...
 
 ## CSV File (Batch)
+
+## SSH (WSL2)
+### 1. Enable and Configure SSH on WSL2
+#### DOS
+ssh-keygen -t rsa -b 4096 -f %userprofile%\\.ssh\\id_rsa
+dir %userprofile%\\.ssh\\
+
+type id_rsa.pub
+    ssh-rsa AAAAB3NzaC1yc2...
+
+#### WSL2
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install openssh-server -y
+
+sudo service ssh start
+sudo service ssh status
+    ● ssh.service - OpenBSD Secure Shell server
+         Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
+         Active: active (running) since Thu 2025-01-16 16:42:49 CST; 1min 12s ago
+           Docs: man:sshd(8)
+                 man:sshd_config(5)
+       Main PID: 1303 (sshd)
+    ...
+
+hostname -I
+    172.21.243.76
+whoami
+
+// Public key on your Windows system (id_rsa.pub)
+echo "Windows id_rsa_pub contents" >> ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+
+sudo nano /etc/ssh/sshd_config
+    PubkeyAuthentication yes
+    PasswordAuthentication yes
+
+sudo service ssh restart
+
+#### DOS
+ssh christseng89@172.21.243.76
+    ...
+    Are you sure you want to continue connecting (yes/no/[fingerprint])? y
+    Please type 'yes', 'no' or the fingerprint: yes
+    ...
+exit
+
+ssh -i C:\Users\samfi\.ssh\id_rsa christseng89@172.21.243.76
+exit
+
+#### V2 using paramiko
+pip install paramiko
+
+#### Error handling
+ssh christseng89@172.21.243.76
+    ssh: connect to host 172.21.243.76 port 22: Connection timed out
+
+// WSL2
+sudo service ssh restart
