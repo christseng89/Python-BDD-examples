@@ -1,5 +1,6 @@
 import paramiko
 import threading
+import time
 from utilities.configurations import *
 
 # Get configuration information
@@ -33,7 +34,13 @@ def write_to_shell(remote_shell):
             if user_input.strip().lower() == "exit":
                 remote_shell.send("exit\n")
                 break
-            remote_shell.send(user_input + "\n")
+            # Disable echo command from Terminal
+            elif user_input.strip().lower() == "enable-echo":
+                remote_shell.send("stty echo\n")
+            elif user_input.strip().lower() == "disable-echo":
+                remote_shell.send("stty -echo\n")
+            else:
+                remote_shell.send(user_input + "\n")
     except KeyboardInterrupt:
         print("\nWrite thread interrupted.")
         remote_shell.send("exit\n")  # Gracefully exit remote shell
@@ -53,6 +60,10 @@ try:
 
     # Open an interactive shell session
     shell = client.invoke_shell()
+
+    # Disable command echo
+    shell.send("stty -echo\n")
+    time.sleep(1)  # Allow the command to take effect
 
     # Start threads for reading and writing
     read_thread = threading.Thread(target=read_from_shell, args=(shell,), daemon=True)
