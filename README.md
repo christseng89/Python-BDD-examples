@@ -205,8 +205,10 @@ sudo service ssh status
          Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
          Active: active (running) since Thu 2025-01-16 16:42:49 CST; 1min 12s ago
            Docs: man:sshd(8)
-                 man:sshd_config(5)
-       Main PID: 1303 (sshd)
+    ...
+    Jan 18 13:25:58 Chris-SP11 systemd[1]: Starting OpenBSD Secure Shell server...
+    Jan 18 13:25:58 Chris-SP11 sshd[1884]: Server listening on 0.0.0.0 port 22.
+    Jan 18 13:25:58 Chris-SP11 sshd[1884]: Server listening on :: port 22.
     ...
 
 hostname -I
@@ -218,10 +220,12 @@ echo "Windows id_rsa_pub contents" >> ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 
 sudo nano /etc/ssh/sshd_config
+    PermitRootLogin no
     PubkeyAuthentication yes
     PasswordAuthentication yes
 
 sudo service ssh restart
+sudo systemctl enable ssh
 
 #### DOS
 ssh christseng89@172.21.243.76
@@ -249,3 +253,8 @@ sudo service ssh status
 
 #### SSH SFTP
 md outFiles
+
+### Web Scrapping
+- https://www.imdb.com/find/?s=ep&q=thriller&ref_=nv_sr_sm
+// install Beautiful soap
+pip install beautifulsoup4
