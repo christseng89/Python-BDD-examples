@@ -39,20 +39,20 @@ Developers, Testers, and Business Stakeholders are involved in writing Gherkin S
 - Glue Code: Connect step definition to Gherkin scenarios.
 - Report: Shows which tests passed, failed, or were skipped.
 
-### BDD Stages
-- Discovery: The requirement-gathering phase involves structured conversations during Discovery Workshops. Teams explore and agree on desired system behaviors, enhancing shared understanding and prioritizing functionality. This minimizes unnecessary meetings while maximizing productivity.
-- Formulation: This documentation phase converts key examples from discovery into structured, executable documentation. Unlike traditional documentation, BDD uses human- and machine-readable formats, enabling validation, automation, and fostering a common language across teams for clarity and consistency.
-- Automation: The implementation phase translates formulated examples into automated tests that drive development. Initially failing tests guide the coding process, ensuring alignment with desired behaviors. Automated tests act as a safety net during maintenance, reducing manual regression testing and enabling teams to focus on exploratory testing.
+## BDD Phases
+1. Discovery: The requirement-gathering phase involves structured conversations during Discovery Workshops. Teams explore and agree on desired system behaviors, enhancing shared understanding and prioritizing functionality. This minimizes unnecessary meetings while maximizing productivity.
+2. Formulation: This documentation phase converts key examples from discovery into structured, executable documentation. Unlike traditional documentation, BDD uses human- and machine-readable formats, enabling validation, automation, and fostering a common language across teams for clarity and consistency.
+3. Automation: The implementation phase translates formulated examples into automated tests that drive development. Initially failing tests guide the coding process, ensuring alignment with desired behaviors. Automated tests act as a safety net during maintenance, reducing manual regression testing and enabling teams to focus on exploratory testing.
 
 ### Advantages of BDD
 - Enhanced Collaboration: By uniting developers, testers, business analysts, and stakeholders, BDD fosters shared understanding and alignment, ensuring the right solution is built.
 - Iterative Development: BDD supports rapid feedback loops through small, iterative chunks, allowing early validation and adjustments, improving value flow and issue detection.
 - Living Documentation: Executable tests ensure up-to-date, user-friendly documentation that simplifies system understanding and maintenance.
 
-#### Discovery Phase in 7 steps
+## Discovery Phase
 PO - Product Owner
 
-7 Steps
+### Discovery Phase in 7 Steps
 1. Kickoff
 2. Preparation: This involves defining the project scope, refining user stories and acceptance criteria, and preparing business examples. Stakeholders are identified to ensure comprehensive perspectives are included, while developers assess technical feasibility and testers review testability.
    - Pre-session preparation includes:
@@ -98,12 +98,12 @@ PO - Product Owner
    总结：
    - 在发现阶段，Gherkin场景通常会在定义场景（Defining Scenarios）步骤中开始撰写，但这些内容仍是草稿，主要用于团队的共同理解。正式的feature文件会在BDD工作流程的后续阶段创建。
 
-#### Formulation Phase
+## Formulation Phase
 The formulation phase in BDD transforms the scenarios identified during the discovery phase into clear, executable specifications. 
 This phase serves as a bridge between understanding the desired behavior and implementing it through automated tests. 
 Its primary goal is to refine Gherkin scenarios to ensure they are accurate, precise, unambiguous, and aligned with business goals.
 
-##### Key Aspects of the Formulation Phase:
+### Key Aspects of the Formulation Phase:
 - Collaboration: Developers, testers, and product owners work closely to ensure scenarios are detailed, understandable by the entire team, and executable by automation tools.
 - Gherkin Syntax: Scenarios are written in carefully crafted Gherkin syntax, reflecting the system's behavior. These scenarios serve both as documentation and as automated test cases, a key advantage of BDD.
 
@@ -122,7 +122,7 @@ Summary:
 3. Refine and Organize
 4. Stakeholder Review
 
-#### Formulation Phase Best Practices
+### Formulation Phase Best Practices
 - Split Scenarios by Valid and Invalid Cases.
 - Utilize Background.
 - Keep Scenarios short and focused.
@@ -130,3 +130,11 @@ Summary:
 - Behavior should be explained clearly from user's perspective.
 - Single focused test scenario.
 - Do not overcomplicate.
+
+## Automation Phase
+### Steps to Automation Phase
+1. Setup Automation Framework
+2. Map Feature files to step definition
+3. Automate Test Scenarios
+4. Review and Validate
+5. Test Execution
