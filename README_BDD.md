@@ -137,4 +137,4 @@ Summary:
 2. Map Feature files to step definition
 3. Automate Test Scenarios
 4. Review and Validate
-5. Test Execution
+5. Test Execution/Reporting
