@@ -115,3 +115,18 @@ Steps in the Formulation Phase:
 
 Summary:
 - The formulation phase ensures that scenarios are polished and ready for automation, enhancing both documentation and testing efficiency. It emphasizes collaboration, refinement, and precision to maintain alignment with business goals and prepare for the implementation phase.
+
+### Steps to Formulation Phase
+1. Review and Clarify
+2. Write Gherkin Scenarios
+3. Refine and Organize
+4. Stakeholder Review
+
+#### Formulation Phase Best Practices
+- Split Scenarios by Valid and Invalid Cases.
+- Utilize Background.
+- Keep Scenarios short and focused.
+- Use Scenario Outline.
+- Behavior should be explained clearly from user's perspective.
+- Single focused test scenario.
+- Do not overcomplicate.
