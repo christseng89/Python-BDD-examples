@@ -25,3 +25,55 @@ Feature: Fund Transfer
     Then user should see the confirmation message as "Successful fund transfer"
     And the checking account balance should be reduced by "$100"
     And the savings account balance should be increased by "$100"
+
+  Scenario: Transaction rejected due to invalid amount.
+    Given user has valid credentials to login
+    When user selects the "Checking" as "From" account
+    And user selects the "Savings" as "To" account
+    And user enters the amount to be transferred as "$0"
+    And user clicks on confirmation button
+    Then user should see the error message as "Invalid amount entered"
+    And the checking account balance should remain the same
+    And the savings account balance should remain the same
+
+  Scenario: Transaction rejected due to insufficient funds.
+    Given user has valid credentials to login
+    When user selects the "Checking" as "From" account
+    And user selects the "Savings" as "To" account
+    And user enters the amount to be transferred as "$1000"
+    And user clicks on confirmation button
+    Then user should see the error message as "Insufficient funds"
+    And the checking account balance should remain the same
+    And the savings account balance should remain the same
+
+  Scenario: Incomplete transaction due to session timeout.
+    Given user has valid credentials to login
+    When user selects the "Checking" as "From" account
+    And user selects the "Savings" as "To" account
+    And user enters the amount to be transferred as "$100"
+    And user clicks on confirmation button
+    And user session times out
+    Then user should see the error message as "Session timeout"
+    And the checking account balance should remain the same
+    And the savings account balance should remain the same
+
+  Scenario: Transaction rejected due to invalid account selection.
+    Given user has valid credentials to login
+    When user selects the "Checking" as "From" account
+    And user selects the "Checking" as "To" account
+    And user enters the amount to be transferred as "$100"
+    And user clicks on confirmation button
+    Then user should see the error message as "Invalid account selection"
+    And the checking account balance should remain the same
+    And the savings account balance should remain the same
+
+  Scenario: Transaction failure due to blocked or closed account.
+    Given user has valid credentials to login
+    When user selects the "Checking" as "From" account
+    And user selects the "Savings" as "To" account
+    And user enters the amount to be transferred as "$100"
+    And user clicks on confirmation button
+    And user account is blocked or closed
+    Then user should see the error message as "Account blocked or closed"
+    And the checking account balance should remain the same
+    And the savings account balance should remain the same
