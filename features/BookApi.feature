@@ -16,7 +16,7 @@ Feature: Verify if Book are added and deleted using Library API
       When we execute the AddBook PostAPI method
       Then book is successfully added
       Examples:
-        |isbn   |aisle |
-        |abcdef  | 621 |
-        |abcdef  | 622 |
-        |abcdef  | 623  |
+        | isbn   | aisle |
+        | abcdef | 621   |
+        | abcdef | 622   |
+        | abcdef | 623   |

@@ -19,14 +19,14 @@ Feature: Fund Transfer
   Background: Application login
     Given user has valid credentials to login
 
-  Scenario: Successful fund transfer from checking to savings account
-    When user selects the "Checking" as "From" account
-    And user selects the "Savings" as "To" account
-    And user enters the amount to be transferred as "$100"
-    And user clicks on confirmation button
-    Then user should see the confirmation message as "Successful fund transfer"
-    And the checking account balance should be reduced by "$100"
-    And the savings account balance should be increased by "$100"
+#  Scenario: Successful fund transfer from checking to savings account
+#    When user selects the "Checking" as "From" account
+#    And user selects the "Savings" as "To" account
+#    And user enters the amount to be transferred as "$100"
+#    And user clicks on confirmation button
+#    Then user should see the confirmation message as "Successful fund transfer"
+#    And the checking account balance should be reduced by "$100"
+#    And the savings account balance should be increased by "$100"
 
 #  Scenario: Transaction rejected due to invalid amount.
 #    When user selects the "Checking" as "From" account
@@ -86,7 +86,7 @@ Feature: Fund Transfer
     And the savings account balance should "<SavingBalance>"
 
   Examples:
-    | FromAccount | ToAccount | Amount | Message                   | CheckingBalance | SavingBalance |
+    | FromAccount | ToAccount | Amount | Message                    | CheckingBalance | SavingBalance |
     | Checking    | Savings   | 100    | "Successful fund transfer" | -100            | 100           |
     | Savings     | Checking  | 100    | "Successful fund transfer" | 100             | -100          |
 
@@ -101,10 +101,11 @@ Feature: Fund Transfer
     And the checking account balance should be "<CheckingBalance>"
     And the savings account balance should "<SavingBalance>"
 
+#    Ctrl + Alt + L to Reformat the Examples
   Examples:
-    | FromAccount | ToAccount | Amount | Message                   | CheckingBalance | SavingBalance | AdditionalStep                     |
-    | Checking    | Savings   | 0      | "Invalid amount entered"   | 0               | 0             |                                     |
-    | Checking    | Savings   | 10000  | "Insufficient funds"       | 0               | 0             |                                     |
-    | Checking    | Checking  | 100    | "Invalid account selection" | 0              | 0             |                                     |
-    | Checking    | Savings   | 100    | "User session timeout"     | 0               | 0             | User session timeout                |
-    | Checking    | Savings   | 100    | "User account is blocked or closed" | 0       | 0             | User account is blocked or closed   |
+    | FromAccount | ToAccount | Amount | Message                             | CheckingBalance | SavingBalance | AdditionalStep                    |
+    | Checking    | Savings   | 0      | "Invalid amount entered"            | 0               | 0             |                                   |
+    | Checking    | Savings   | 10000  | "Insufficient funds"                | 0               | 0             |                                   |
+    | Checking    | Checking  | 100    | "Invalid account selection"         | 0               | 0             |                                   |
+    | Checking    | Savings   | 100    | "User session timeout"              | 0               | 0             | User session timeout              |
+    | Checking    | Savings   | 100    | "User account is blocked or closed" | 0               | 0             | User account is blocked or closed |

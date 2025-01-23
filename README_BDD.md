@@ -138,3 +138,8 @@ Summary:
 3. Automate Test Scenarios
 4. Review and Validate
 5. Test Execution/Reporting
+
+### Map Feature files to Step Definitions
+Using AI or IDE (IntelliJ)
+
+behave features/FundTransfer.feature
