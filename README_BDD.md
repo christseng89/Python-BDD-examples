@@ -143,3 +143,7 @@ Summary:
 Using AI or IDE (IntelliJ)
 
 behave features/FundTransfer.feature
+    ...
+    1 feature passed, 0 failed, 0 skipped
+    7 scenarios passed, 0 failed, 0 skipped
+    56 steps passed, 0 failed, 0 skipped, 0 undefined
