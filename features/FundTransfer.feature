@@ -8,44 +8,40 @@ Feature: Fund Transfer
   @valid @smoke @regression @positive
   Scenario Outline: Valid: Fund transfer with valid details
     When user clicks on Transfer Funds
-    When user selects the "<FromAccount>" as "From" account
-    And user selects the "<ToAccount>" as "To" account
-    And user enters the amount to be transferred as "<Amount>"
-    And user clicks on confirmation button
-    Then user should see the message as "<Message>"
-    And user clicks on Account Overview to check account balance
+    And user selects "<FromAccount>" as the "From" account
+    And user selects "<ToAccount>" as the "To" account
+    And user enters the amount "<Amount>" to be transferred
+    And user clicks on the confirmation button
+    Then user should see the message "<Message>"
+    And user clicks on Account Overview to check the account balance
     And FROM account balance should be "<FromBalance>" for "<FromAccount>"
-    And TO account balance should "<ToBalance>" for "<ToAccount>"
-#    And the checking account balance should be "<CheckingBalance>"
-#    And the savings account balance should be "<SavingBalance>"
-##
+    And TO account balance should be "<ToBalance>" for "<ToAccount>"
+
+#    Ctrl + Alt + L to Reformat the Examples
     Examples:
-      | FromAccount | ToAccount | Amount | Message              | CheckingBalance | SavingBalance |
-      | 15231       | 15453     | 100    | "Transfer Complete!" | 415.50          | 100           |
-      | 15453       | 15231     | 100    | "Transfer Complete!" | 515.50          | 0             |
+      | FromAccount | ToAccount | Amount | Message              | FromBalance | ToBalance |
+      | 15231       | 15453     | 100    | Transfer Complete!   | 415.50      | 100       |
+      | 15453       | 15231     | 100    | Transfer Complete!   | 515.50      | 0         |
 
   @invalid @regression @negative
   Scenario Outline: Invalid: Fund transfer with invalid details
     When user clicks on Transfer Funds
-    When user selects the "<FromAccount>" as "From" account
-    And user selects the "<ToAccount>" as "To" account
-    And user enters the amount to be transferred as "<Amount>"
-    And user clicks on confirmation button
-    Then user should see the message as "<Message>"
-    And user clicks on Account Overview to check account balance
+    And user selects "<FromAccount>" as the "From" account
+    And user selects "<ToAccount>" as the "To" account
+    And user enters the amount "<Amount>" to be transferred
+    And user clicks on the confirmation button
+    Then user should see the message "<Message>"
+    And user clicks on Account Overview to check the account balance
     And FROM account balance should be "<FromBalance>" for "<FromAccount>"
-    And TO account balance should "<ToBalance>" for "<ToAccount>"
-#    And the checking account balance should be "<CheckingBalance>"
-#    And the savings account balance should be "<SavingBalance>"
+    And TO account balance should be "<ToBalance>" for "<ToAccount>"
 
-#    Ctrl + Alt + L to Reformat the Examples
-#  Examples:
-    | FromAccount | ToAccount | Amount | Message                             | CheckingBalance | SavingBalance | AdditionalStep                    |
-    | Checking    | Savings   | 0      | "Invalid amount entered"            | 0               | 0             |                                   |
-    | Checking    | Savings   | 10000  | "Insufficient funds"                | 0               | 0             |                                   |
-    | Checking    | Checking  | 100    | "Invalid account selection"         | 0               | 0             |                                   |
-    | Checking    | Savings   | 100    | "User session timeout"              | 0               | 0             | User session timeout              |
-    | Checking    | Savings   | 100    | "User account is blocked or closed" | 0               | 0             | User account is blocked or closed |
+    Examples:
+      | FromAccount | ToAccount | Amount | Message                             | FromBalance | ToBalance |
+      | Checking    | Savings   | 0      | Invalid amount entered              | 0           | 0         |
+      | Checking    | Savings   | 10000  | Insufficient funds                  | 0           | 0         |
+      | Checking    | Checking  | 100    | Invalid account selection           | 0           | 0         |
+      | Checking    | Savings   | 100    | User session timeout                | 0           | 0         |
+      | Checking    | Savings   | 100    | User account is blocked or closed   | 0           | 0         |
 
 #  Scenario: Successful fund transfer from checking to savings account
 #    Given user has valid credentials to login
