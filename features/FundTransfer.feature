@@ -7,31 +7,39 @@ Feature: Fund Transfer
 
   @valid @smoke @regression @positive
   Scenario Outline: Valid: Fund transfer with valid details
+    When user clicks on Transfer Funds
     When user selects the "<FromAccount>" as "From" account
-    When user selects the "<ToAccount>" as "To" account
+    And user selects the "<ToAccount>" as "To" account
     And user enters the amount to be transferred as "<Amount>"
     And user clicks on confirmation button
-    Then user should see the error message as "<Message>"
-    And the checking account balance should be "<CheckingBalance>"
-    And the savings account balance should be "<SavingBalance>"
-
-  Examples:
-    | FromAccount | ToAccount | Amount | Message                    | CheckingBalance | SavingBalance |
-    | Checking    | Savings   | 100    | "Successful fund transfer" | -100            | 100           |
-    | Savings     | Checking  | 100    | "Successful fund transfer" | 100             | -100          |
+    Then user should see the message as "<Message>"
+    And user clicks on Account Overview to check account balance
+    And FROM account balance should be "<FromBalance>" for "<FromAccount>"
+    And TO account balance should "<ToBalance>" for "<ToAccount>"
+#    And the checking account balance should be "<CheckingBalance>"
+#    And the savings account balance should be "<SavingBalance>"
+##
+    Examples:
+      | FromAccount | ToAccount | Amount | Message              | CheckingBalance | SavingBalance |
+      | 15231       | 15453     | 100    | "Transfer Complete!" | 415.50          | 100           |
+      | 15453       | 15231     | 100    | "Transfer Complete!" | 515.50          | 0             |
 
   @invalid @regression @negative
   Scenario Outline: Invalid: Fund transfer with invalid details
+    When user clicks on Transfer Funds
     When user selects the "<FromAccount>" as "From" account
-    When user selects the "<ToAccount>" as "To" account
+    And user selects the "<ToAccount>" as "To" account
     And user enters the amount to be transferred as "<Amount>"
     And user clicks on confirmation button
-    Then user should see the error message as "<Message>"
-    And the checking account balance should be "<CheckingBalance>"
-    And the savings account balance should be "<SavingBalance>"
+    Then user should see the message as "<Message>"
+    And user clicks on Account Overview to check account balance
+    And FROM account balance should be "<FromBalance>" for "<FromAccount>"
+    And TO account balance should "<ToBalance>" for "<ToAccount>"
+#    And the checking account balance should be "<CheckingBalance>"
+#    And the savings account balance should be "<SavingBalance>"
 
 #    Ctrl + Alt + L to Reformat the Examples
-  Examples:
+#  Examples:
     | FromAccount | ToAccount | Amount | Message                             | CheckingBalance | SavingBalance | AdditionalStep                    |
     | Checking    | Savings   | 0      | "Invalid amount entered"            | 0               | 0             |                                   |
     | Checking    | Savings   | 10000  | "Insufficient funds"                | 0               | 0             |                                   |

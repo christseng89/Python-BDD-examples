@@ -147,3 +147,16 @@ behave features/FundTransfer.feature
     1 feature passed, 0 failed, 0 skipped
     7 scenarios passed, 0 failed, 0 skipped
     56 steps passed, 0 failed, 0 skipped, 0 undefined
+
+### Automate Test Scenarios
+pip install selenium
+pip install webdriver_manager
+
+// Chrome Driver
+chrome://settings/help
+https://googlechromelabs.github.io/chrome-for-testing/
+
+https://parabank.parasoft.com/
+demo_user / password
+
+behave features/FundTransfer.feature
