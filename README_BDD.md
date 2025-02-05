@@ -160,3 +160,12 @@ https://parabank.parasoft.com/
 demo_user / password
 
 behave features/FundTransfer.feature
+
+### Reporting
+behave features/FundTransfer.feature --format=json --outfile=test_fund_transfer.json
+
+OR
+
+// Refer to README.md
+pip install allure-behave
+behave features/FundTransfer.feature -f allure_behave.formatter:AllureFormatter -o AllureReports

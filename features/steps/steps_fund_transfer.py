@@ -89,12 +89,3 @@ def step_verify_to_balance(context, to_balance, to_account):
     ).text.strip()
     assert balance == to_balance, f"Assertion failed: balance '{balance}' != expected '{to_balance}'"
 
-@then('User session timeout')
-def step_impl_timeout(context):
-    context.session_timeout = True
-    print("User session timed out.")
-
-@then('User account is blocked or closed')
-def step_impl_blocked(context):
-    context.account_status = "blocked"
-    print("User account is blocked or closed.")
